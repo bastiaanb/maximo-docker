@@ -16,7 +16,7 @@ MAINTAINER Yasutaka Nishimura nishi2go@gmail.com
 ARG url=http://images
 
 ARG ver=11.1
-ARG fp=3fp3
+ARG fp=3fp3b
 
 ## Install required software
 RUN dpkg --add-architecture i386
