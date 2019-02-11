@@ -24,13 +24,12 @@ WORKDIR /tmp
 RUN apt update && apt install -y wget unzip && rm -rf /var/lib/apt/lists/*
 
 # Install IBM Installation Manager 1.8.8
-ENV IM_IMAGE IED_V1.8.8_Wins_Linux_86.zip
+ENV IM_IMAGE agent.installer.linux.gtk.x86_64_1.8.8000.20171130_1105.zip
 
 RUN mkdir /Install_Mgr && wget -q $url/$IM_IMAGE \
  && unzip -q -d /Install_Mgr $IM_IMAGE \
  && rm $IM_IMAGE \
- && /Install_Mgr/EnterpriseDVD/Linux_x86_64/EnterpriseCD-Linux-x86_64/InstallationManager/installc -log /tmp/IM_Install_Unix.xml -acceptLicense \
- && rm -rf /Install_Mgr
+ && /Install_Mgr/installc -log /tmp/IM_Install_Unix.xml -acceptLicense
 
 ## Update Installation Manager
 RUN if [ "${updateim}" = "yes" ]; then /opt/IBM/InstallationManager/eclipse/tools/imcl install com.ibm.cic.agent; fi
